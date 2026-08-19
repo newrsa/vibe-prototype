@@ -1,0 +1,5 @@
+Element ID,Element Name,Element Type,Parent ID,Content/Text,CSS Styles,Figma JSON Details,Status
+1038:19907,Main Container,FRAME,root,, "{""display"": ""flex"", ""flex-direction"": ""column"", ""padding"": ""24px"", ""background-color"": ""#ffffff""}", "{""layoutMode"": ""VERTICAL"", ""itemSpacing"": 16}", Pending
+1038:19908,Header Title,TEXT,1038:19907,Welcome to Dashboard, "{""font-family"": ""Inter"", ""font-size"": ""24px"", ""font-weight"": ""700"", ""color"": ""#111827""}", "{""textAlignHorizontal"": ""LEFT""}", Pending
+1038:19909,Submit Button,INSTANCE,1038:19907,Click Me, "{""background-color"": ""#3b82f6"", ""border-radius"": ""8px"", ""color"": ""#ffffff""}", "{""componentId"": ""800:12""}", Pending
+1038:19910,Hero Image,RECTANGLE,1038:19907,, "{""width"": ""100%"", ""height"": ""200px"", ""background-image"": ""url(...)""}", "{""fills"": [{""type"": ""IMAGE""}]}", Pending

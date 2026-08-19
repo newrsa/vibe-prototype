@@ -1,0 +1,212 @@
+[
+  [
+    "Element ID",
+    "Element Name",
+    "Element Type",
+    "Parent ID",
+    "Content/Text",
+    "CSS Style",
+    "Figma JSON",
+    "Layout",
+    "Position x,y",
+    "Prompt"
+  ],
+  [
+    "pw:1",
+    "screen body",
+    "parent boday",
+    "pw:1",
+    "make blank boday",
+    "border-radius: 12px;\nbackground: #000;",
+    "N/A",
+    "width: 1440px;\nheight: 900px;",
+    "",
+    "set this screen 100vh , 100vw"
+  ],
+  [
+    "pw:2",
+    "side bar",
+    "side-bar",
+    "pw:1",
+    "make blank ",
+    "background: #000;",
+    "N/A",
+    "width: 115px;\nheight: 900px;",
+    "0,0",
+    "no need to scrool bar "
+  ],
+  [
+    "pw:3",
+    "brand logo",
+    "img",
+    "pw:2",
+    "public/assets/RSA All Designs_img/\nFull R White on Black 1.png",
+    "",
+    "",
+    "width: 51px;\nheight: 48px;",
+    "16,22",
+    "use image path in given Content column"
+  ],
+  [
+    "pw:4",
+    "tab icon parent",
+    "div",
+    "pw:2",
+    "blank",
+    "N/A",
+    "N/A",
+    "display: flex;\nwidth: 65px;\nflex-direction: column;\nalign-items: flex-start;\ngap: 12px;",
+    "",
+    "set verticaly center "
+  ],
+  [
+    "pw:5",
+    "icon tab",
+    "div",
+    "pw:4",
+    "blank",
+    "border-radius: 4px;",
+    "",
+    "display: flex;\npadding: 16px 132px 16px 24px;\nflex-direction: column;\nalign-items: flex-start;\ngap: 10px;\nalign-self: stretch;",
+    "24,326",
+    "bidifault active , on active background: #3355F6;\nTooltip:Pathway"
+  ],
+  [
+    "pw:6",
+    "icon tab",
+    "div",
+    "pw:4",
+    "blank",
+    "border-radius: 4px;",
+    "",
+    "display: flex;\npadding: 16px 132px 16px 24px;\nflex-direction: column;\nalign-items: flex-start;\ngap: 10px;\nalign-self: stretch;",
+    "24,390",
+    "on active background: #3355F6;,Tooltip:Bluebook"
+  ],
+  [
+    "pw:7",
+    "icon tab",
+    "div",
+    "pw:4",
+    "blank",
+    "border-radius: 4px;",
+    "",
+    "display: flex;\npadding: 16px 132px 16px 24px;\nflex-direction: column;\nalign-items: flex-start;\ngap: 10px;\nalign-self: stretch;",
+    "24,454",
+    "on active background: #3355F6;,Tooltip:Network"
+  ],
+  [
+    "pw:8",
+    "icon tab",
+    "div",
+    "pw:4",
+    "blank",
+    "border-radius: 4px;",
+    "",
+    "display: flex;\npadding: 16px 132px 16px 24px;\nflex-direction: column;\nalign-items: flex-start;\ngap: 10px;\nalign-self: stretch;",
+    "24,518",
+    "on active background: #3355F6;, Tooltip:My Profile"
+  ],
+  [
+    "pw:9",
+    "icon tab",
+    "div",
+    "pw:4",
+    "blank",
+    "border-radius: 4px;",
+    "",
+    "display: flex;\npadding: 16px 132px 16px 24px;\nflex-direction: column;\nalign-items: flex-start;\ngap: 10px;\nalign-self: stretch;",
+    "24,582",
+    "on active background: #3355F6;Tooltip:Shcedule"
+  ],
+  [
+    "pw:10",
+    "pathway_icon",
+    "img",
+    "pw:5",
+    "public\\assets\\RSA All Designs_icon\\Frame-10.svg"
+  ],
+  [
+    "pw:11",
+    "bluebook_icon",
+    "img",
+    "pw:6",
+    "public\\assets\\RSA All Designs_icon\\Blue-book.svg"
+  ],
+  [
+    "pw:12",
+    "network_icon",
+    "img",
+    "pw:7",
+    "public\\assets\\RSA All Designs_icon\\Frame-6.svg"
+  ],
+  [
+    "pw:13",
+    "my_profile_icon",
+    "img",
+    "pw:8",
+    "public\\assets\\RSA All Designs_icon\\Frame-8.svg"
+  ],
+  [
+    "pw:14",
+    "Schedule_icon",
+    "img",
+    "pw:9",
+    "public\\assets\\RSA All Designs_icon\\Frame-7.svg"
+  ],
+  [
+    "pw:15",
+    "user_profile_parent",
+    "div",
+    "pw:2",
+    "blank",
+    "border-radius: 4px;\r\nbackground: #1F3394;\r\n\r",
+    "",
+    "display: flex;\njustify-content: center;\nalign-items: center;\ngap: 10px;",
+    "44,765",
+    "do not override on pw:4"
+  ],
+  [
+    "pw:16",
+    "user_image",
+    "img",
+    "pw:15",
+    "assets/RSA All Designs_img/avatar-image.png",
+    "border-radius: 4px;\n",
+    "",
+    "width: 32px;\nheight: 32px;\naspect-ratio: 1/1;",
+    "44,765"
+  ],
+  [
+    "pw:17",
+    "setting-icon-parent",
+    "div",
+    "pw:2",
+    "blank",
+    "border-radius: 4px;\nbackground: #1F3394;",
+    "",
+    "display: flex;\nwidth: 32px;\nheight: 33px;\npadding: 10px 8px;\njustify-content: center;\nalign-items: center;\ngap: 10px",
+    "44,813",
+    "do not override on pw:4"
+  ],
+  [
+    "pw:18",
+    "setting-icon",
+    "img",
+    "pw:17",
+    "public\\assets\\RSA All Designs_icon\\Vector-1.svg",
+    "",
+    "",
+    "width: 14.458px;\nheight: 15.003px;\nflex-shrink: 0;",
+    "44,813"
+  ],
+  [
+    "pw:19",
+    "title-bar",
+    "",
+    "pw:1",
+    "public\\assets\\RSA All Designs_icon\\Frame-9.svg\npublic\\assets\\RSA All Designs_icon\\Frame-11.svg\npublic\\assets\\RSA All Designs_icon\\Frame-2.svg",
+    "",
+    "check file : desgin-json/title-bar.json ,desgin-json/togle.json"
+  ]
+]
