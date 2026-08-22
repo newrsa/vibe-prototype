@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build-deploy:
@@ -24,7 +25,7 @@ jobs:
           cache-dependency-path: './client-app/package-lock.json'
 
       - name: Install Dependencies
-        run: npm ci || npm install
+        run: npm ci
 
       - name: Build Project
         run: npm run build
@@ -35,6 +36,17 @@ jobs:
         run: ls -la dist
 
       - name: Deploy to FTP using LFTP
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
         run: |
-          sudo apt-get update && sudo apt-get install -y lftp
-          lftp -d -c "set ftp:ssl-allow yes; set ssl:verify-certificate no; open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }}; mirror -R ./dist/ public_html/prototype/vibe-prototype/ --ignore-time --parallel=10"
+          command -v lftp >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y lftp; }
+          lftp -c "
+            set ftp:ssl-allow yes;
+            set ssl:verify-certificate no;
+            set ftp:passive-mode on;
+            set net:max-retries 2;
+            open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\";
+            mirror -R --verbose --ignore-time --parallel=10 ./dist/ /public_html/prototype/vibe-prototype/
+          "
