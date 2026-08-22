@@ -1,14 +1,9 @@
-name: Deploy Branches to FTP
+name: Deploy to FTP
 
 on:
   push:
     branches:
       - main
-      - dev
-      - nileshbiniwale
-      - mayureshashrit
-      - pradipsalke
-      - prototype
 
 jobs:
   build-deploy:
@@ -20,14 +15,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      - name: Set Branch Name
-        run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
-
-      - name: Set Deploy Path
-        run: |
-          echo "DEPLOY_DIR=public_html/vibe-prototype/" >> $GITHUB_ENV
-          echo "VITE_BASE_PATH=/vibe-prototype/" >> $GITHUB_ENV
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -42,7 +29,7 @@ jobs:
       - name: Build Project
         run: npm run build
         env:
-          VITE_BASE_PATH: ${{ env.VITE_BASE_PATH }}
+          VITE_BASE_PATH: /prototype/vibe-prototype/
 
       - name: Verify Build
         run: ls -la dist
@@ -54,5 +41,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./client-app/dist/
-          server-dir: ${{ env.DEPLOY_DIR }}
+          server-dir: /public_html/prototype/vibe-prototype/
           timeout: 300000
