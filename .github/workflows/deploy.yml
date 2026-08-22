@@ -34,13 +34,7 @@ jobs:
       - name: Verify Build
         run: ls -la dist
 
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./client-app/dist/
-          server-dir: public_html/prototype/vibe-prototype/
-          timeout: 300000
+      - name: Deploy to FTP using LFTP
+        run: |
+          sudo apt-get update && sudo apt-get install -y lftp
+          lftp -d -c "set ftp:ssl-allow yes; set ssl:verify-certificate no; open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }}; mirror -R ./client-app/dist/ public_html/prototype/vibe-prototype/ --ignore-time --parallel=10"
