@@ -1,41 +1,58 @@
-name: Deploy to Shared Hosting
+name: Deploy Branches to FTP
 
 on:
   push:
     branches:
       - main
-      - master
-  workflow_dispatch:
+      - dev
+      - nileshbiniwale
+      - mayureshashrit
+      - pradipsalke
+      - prototype
 
 jobs:
-  build-and-deploy:
+  build-deploy:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./client-app # Since React app is in this folder
+        working-directory: ./client-app
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set Branch Name
+        run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Set Deploy Path
+        run: |
+          echo "DEPLOY_DIR=prototype/vibe-prototype/" >> $GITHUB_ENV
+          echo "VITE_BASE_PATH=/prototype/vibe-prototype/" >> $GITHUB_ENV
+
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
           cache-dependency-path: './client-app/package-lock.json'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm ci || npm install
 
-      - name: Build project
+      - name: Build Project
         run: npm run build
+        env:
+          VITE_BASE_PATH: ${{ env.VITE_BASE_PATH }}
 
-      - name: FTP Deploy
+      - name: Verify Build
+        run: ls -la dist
+
+      - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./client-app/dist/
-          server-dir: ./
+          server-dir: ${{ env.DEPLOY_DIR }}
+          timeout: 300000
