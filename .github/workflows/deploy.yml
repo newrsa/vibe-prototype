@@ -37,4 +37,4 @@ jobs:
       - name: Deploy to FTP using LFTP
         run: |
           sudo apt-get update && sudo apt-get install -y lftp
-          lftp -d -c "set ftp:ssl-allow yes; set ssl:verify-certificate no; open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }}; mirror -R ./client-app/dist/ public_html/prototype/vibe-prototype/ --ignore-time --parallel=10"
+          lftp -d -c "set ftp:ssl-allow yes; set ssl:verify-certificate no; open -u '${{ secrets.FTP_USERNAME }}','${{ secrets.FTP_PASSWORD }}' ${{ secrets.FTP_SERVER }}; mirror -R ./dist/ public_html/prototype/vibe-prototype/ --ignore-time --parallel=10"
