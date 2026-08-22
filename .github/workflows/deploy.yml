@@ -30,7 +30,7 @@ jobs:
       - name: Build Project
         run: npm run build
         env:
-          VITE_BASE_PATH: /vibeprototype/
+          VITE_BASE_PATH: /vibe-prototype/
 
       - name: Verify Build
         run: ls -la dist
@@ -48,7 +48,7 @@ jobs:
           else
             RBASE=""
           fi
-          echo "FTP base directory: '${RBASE:-/}' (landing dir + /vibeprototype)"
+          echo "FTP base directory: '${RBASE:-/}' (landing dir + /vibe-prototype)"
 
           lftp -c "
             set ftp:ssl-allow yes;
@@ -57,8 +57,8 @@ jobs:
             set net:max-retries 2;
             set cmd:fail-exit yes;
             open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\";
-            mkdir -pf $RBASE/vibeprototype;
-            cd $RBASE/vibeprototype;
+            mkdir -pf $RBASE/vibe-prototype;
+            cd $RBASE/vibe-prototype;
             mirror -R --verbose --ignore-time --parallel=10 ./dist/ ./;
             ls -la
           "
