@@ -66,5 +66,4 @@ export function RouteErrorBoundary() {
       )}
     </div>
   )
-
 }
