@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import { AppLayout } from '@/components/layout/AppLayout'
-import { ErrorBoundary } from '@/components/common/ErrorBoundary'
+import { RouteErrorBoundary } from '@/components/common/ErrorBoundary'
 import { PageLoader } from '@/components/common/LoadingSpinner'
 import { ROUTES } from '@/utils/constants'
 
@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
-    errorElement: <ErrorBoundary><div /></ErrorBoundary>,
+    errorElement: <RouteErrorBoundary />,
     children: [
       { index: true, element: <Navigate to={ROUTES.PATHWAY} replace /> },
       { path: ROUTES.PATHWAY,    element: <LazyPage><PathwayPage /></LazyPage> },
