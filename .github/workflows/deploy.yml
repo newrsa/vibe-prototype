@@ -41,5 +41,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./client-app/dist/
-          server-dir: /public_html/prototype/vibe-prototype/
+          server-dir: public_html/prototype/vibe-prototype/
           timeout: 300000
