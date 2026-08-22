@@ -19,6 +19,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
   static getDerivedStateFromError(): ErrorBoundaryState {
     return { hasError: true }
   }
+
   render() {
     if (this.state.hasError) {
       return this.props.fallback ?? <div>Something went wrong.</div>
