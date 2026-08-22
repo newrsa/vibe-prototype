@@ -26,8 +26,8 @@ jobs:
 
       - name: Set Deploy Path
         run: |
-          echo "DEPLOY_DIR=prototype/vibe-prototype/" >> $GITHUB_ENV
-          echo "VITE_BASE_PATH=/prototype/vibe-prototype/" >> $GITHUB_ENV
+          echo "DEPLOY_DIR=public_html/vibe-prototype/" >> $GITHUB_ENV
+          echo "VITE_BASE_PATH=/vibe-prototype/" >> $GITHUB_ENV
 
       - name: Setup Node
         uses: actions/setup-node@v4
