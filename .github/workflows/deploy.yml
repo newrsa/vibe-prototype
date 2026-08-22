@@ -35,6 +35,23 @@ jobs:
       - name: Verify Build
         run: ls -la dist
 
+      - name: Diagnose FTP layout
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        run: |
+          lftp -c "
+            set ftp:ssl-allow yes;
+            set ssl:verify-certificate no;
+            set ftp:passive-mode on;
+            open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\";
+            echo ===PWD===; pwd;
+            echo ===LANDING_DIR===; ls -la .;
+            echo ===PARENT_DIR===; ls -la ..;
+            echo ===TREE_DEPTH2===; find -d 2 .;
+          "
+
       - name: Deploy to FTP using LFTP
         env:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
