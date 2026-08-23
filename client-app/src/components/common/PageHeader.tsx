@@ -4,7 +4,6 @@ interface PageHeaderProps {
   description?: string
   actions?: React.ReactNode
 }
-
 export function PageHeader({ title, description, actions }: PageHeaderProps) {
   return (
     <div className="mb-6 flex items-center justify-between">
