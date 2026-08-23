@@ -3,7 +3,7 @@ name: Deploy Client App to Shared Hosting
 on:
   push:
     branches:
-      - deploy
+      - main
 
 jobs:
   build-and-deploy:
