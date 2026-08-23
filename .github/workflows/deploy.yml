@@ -23,7 +23,7 @@ jobs:
       - name: Set Deploy Path
         run: |
           echo "DEPLOY_DIR=/${GITHUB_REF_NAME}/" >> $GITHUB_ENV
-          echo "VITE_BASE_PATH=/${GITHUB_REF_NAME}/" >> $GITHUB_ENV
+          echo "VITE_BASE_PATH=/vibeprototype/" >> $GITHUB_ENV
 
       # 4. Setup Node.js
       - name: Setup Node.js
