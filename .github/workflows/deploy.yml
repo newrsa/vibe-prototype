@@ -32,11 +32,11 @@ jobs:
         working-directory: ./client-app
         run: npm run build
 
-      # 5. Deploy only the build folder through FTP
+            # 5. Deploy via SFTP (Port 22)
       - name: Deploy to Shared Hosting
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./client-app/dist/
