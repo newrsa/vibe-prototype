@@ -1,4 +1,4 @@
-name: Deploy Client App to Shared Hosting
+name: Deploy Branches to FTP
 
 on:
   push:
@@ -6,15 +6,26 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Get code from GitHub
-      - name: Checkout repository
+
+      # 1. Checkout the branch that triggered the workflow
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js
+      # 2. Get branch name
+      - name: Set Branch Name
+        run: echo "BRANCH_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+
+      # 3. Set deployment folder and Vite base path
+      - name: Set Deploy Path
+        run: |
+          echo "DEPLOY_DIR=/${GITHUB_REF_NAME}/" >> $GITHUB_ENV
+          echo "VITE_BASE_PATH=/${GITHUB_REF_NAME}/" >> $GITHUB_ENV
+
+      # 4. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -22,23 +33,29 @@ jobs:
           cache: npm
           cache-dependency-path: client-app/package-lock.json
 
-      # 3. Install dependencies
-      - name: Install dependencies
+      # 5. Install dependencies inside client-app
+      - name: Install Dependencies
         working-directory: ./client-app
         run: npm ci
 
-      # 4. Build React project
-      - name: Build application
+      # 6. Build React/Vite project
+      - name: Build Project
         working-directory: ./client-app
         run: npm run build
+        env:
+          VITE_BASE_PATH: ${{ env.VITE_BASE_PATH }}
 
-      # 5. Deploy via SFTP
-      - name: Deploy to Shared Hosting
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      # 7. Verify build output
+      - name: Verify Build
+        run: ls -la ./client-app/dist
+
+      # 8. Deploy to FTP
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22
-          local_path: ./client-app/dist/
-          remote_path: /vibeprototype/
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./client-app/dist/
+          server-dir: /vibeprototype/
