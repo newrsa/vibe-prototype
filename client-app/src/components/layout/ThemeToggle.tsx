@@ -35,12 +35,12 @@ export function ThemeToggle() {
       
       {/* Moon Icon (Left) */}
       <div style={{ position: 'absolute', left: 2, width: 25, height: 25, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
-        <img src="/assets/RSA All Designs_icon/Frame-11.svg" alt="Moon" style={{ width: 14, height: 14 }} />
+        <img src={`${import.meta.env.BASE_URL}assets/RSA All Designs_icon/Frame-11.svg`} alt="Moon" style={{ width: 14, height: 14 }} />
       </div>
 
       {/* Sun Icon (Right) */}
       <div style={{ position: 'absolute', right: 2, width: 25, height: 25, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }}>
-        <img src="/assets/RSA All Designs_icon/Frame-9.svg" alt="Sun" style={{ width: 16, height: 16 }} />
+        <img src={`${import.meta.env.BASE_URL}assets/RSA All Designs_icon/Frame-9.svg`} alt="Sun" style={{ width: 16, height: 16 }} />
       </div>
     </div>
   );

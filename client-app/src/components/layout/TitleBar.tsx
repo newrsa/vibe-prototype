@@ -50,7 +50,7 @@ export function TitleBar() {
       >
         <img
           id="pw-19-icon-2"
-          src="/assets/RSA All Designs_icon/Frame-2.svg"
+          src={`${import.meta.env.BASE_URL}assets/RSA All Designs_icon/Frame-2.svg`}
           alt="Notifications"
           style={{ width: 16, height: 16, display: 'block' }}
         />

@@ -11,35 +11,35 @@ const NAV_TABS = [
     path: ROUTES.PATHWAY,
     tooltip: 'Pathway',
     // pw:10 — pathway_icon
-    icon: '/assets/RSA All Designs_icon/Frame-10.svg',
+    icon: `${import.meta.env.BASE_URL}assets/RSA All Designs_icon/Frame-10.svg`,
   },
   {
     id: 'pw-6',
     path: ROUTES.BLUEBOOK,
     tooltip: 'Bluebook',
     // pw:11 — bluebook_icon
-    icon: '/assets/RSA All Designs_icon/Blue-book.svg',
+    icon: `${import.meta.env.BASE_URL}assets/RSA All Designs_icon/Blue-book.svg`,
   },
   {
     id: 'pw-7',
     path: ROUTES.NETWORK,
     tooltip: 'Network',
     // pw:12 — network_icon
-    icon: '/assets/RSA All Designs_icon/Frame-6.svg',
+    icon: `${import.meta.env.BASE_URL}assets/RSA All Designs_icon/Frame-6.svg`,
   },
   {
     id: 'pw-8',
     path: ROUTES.MY_PROFILE,
     tooltip: 'My Profile',
     // pw:13 — my_profile_icon
-    icon: '/assets/RSA All Designs_icon/Frame-8.svg',
+    icon: `${import.meta.env.BASE_URL}assets/RSA All Designs_icon/Frame-8.svg`,
   },
   {
     id: 'pw-9',
     path: ROUTES.SCHEDULE,
     tooltip: 'Schedule',
     // pw:14 — Schedule_icon
-    icon: '/assets/RSA All Designs_icon/Frame-7.svg',
+    icon: `${import.meta.env.BASE_URL}assets/RSA All Designs_icon/Frame-7.svg`,
   },
 ]
 
@@ -68,7 +68,7 @@ export function Sidebar() {
       ────────────────────────────────────────────────── */}
       <img
         id="pw-3"
-        src="/assets/RSA All Designs_img/Full R White on Black 1.png"
+        src={`${import.meta.env.BASE_URL}assets/RSA All Designs_img/Full R White on Black 1.png`}
         alt="Brand Logo"
         style={{
           position: 'absolute',
@@ -158,7 +158,7 @@ export function Sidebar() {
         ────────────────────────────────────────── */}
         <img
           id="pw-16"
-          src="/assets/RSA All Designs_img/avatar-image.png"
+          src={`${import.meta.env.BASE_URL}assets/RSA All Designs_img/avatar-image.png`}
           alt="User Profile"
           style={{
             width: 32,
@@ -198,7 +198,7 @@ export function Sidebar() {
         ────────────────────────────────────────── */}
         <img
           id="pw-18"
-          src="/assets/RSA All Designs_icon/Vector-1.svg"
+          src={`${import.meta.env.BASE_URL}assets/RSA All Designs_icon/Vector-1.svg`}
           alt="Settings"
           style={{
             width: 14.458,
