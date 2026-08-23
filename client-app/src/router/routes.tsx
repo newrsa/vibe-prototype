@@ -17,19 +17,24 @@ const LazyPage = ({ children }: { children: React.ReactNode }) => (
   <Suspense fallback={<PageLoader />}>{children}</Suspense>
 )
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <AppLayout />,
+      errorElement: <RouteErrorBoundary />,
+      children: [
+        { index: true, element: <Navigate to={ROUTES.PATHWAY} replace /> },
+        { path: ROUTES.PATHWAY,    element: <LazyPage><PathwayPage /></LazyPage> },
+        { path: ROUTES.BLUEBOOK,   element: <LazyPage><BluebookPage /></LazyPage> },
+        { path: ROUTES.NETWORK,    element: <LazyPage><NetworkPage /></LazyPage> },
+        { path: ROUTES.MY_PROFILE, element: <LazyPage><MyProfilePage /></LazyPage> },
+        { path: ROUTES.SCHEDULE,   element: <LazyPage><SchedulePage /></LazyPage> },
+        { path: ROUTES.SETTING,    element: <LazyPage><SettingPage /></LazyPage> },
+      ],
+    },
+  ],
   {
-    path: '/',
-    element: <AppLayout />,
-    errorElement: <RouteErrorBoundary />,
-    children: [
-      { index: true, element: <Navigate to={ROUTES.PATHWAY} replace /> },
-      { path: ROUTES.PATHWAY,    element: <LazyPage><PathwayPage /></LazyPage> },
-      { path: ROUTES.BLUEBOOK,   element: <LazyPage><BluebookPage /></LazyPage> },
-      { path: ROUTES.NETWORK,    element: <LazyPage><NetworkPage /></LazyPage> },
-      { path: ROUTES.MY_PROFILE, element: <LazyPage><MyProfilePage /></LazyPage> },
-      { path: ROUTES.SCHEDULE,   element: <LazyPage><SchedulePage /></LazyPage> },
-      { path: ROUTES.SETTING,    element: <LazyPage><SettingPage /></LazyPage> },
-    ],
-  },
-])
+    basename: import.meta.env.VITE_BASE_PATH || '/',
+  }
+)
