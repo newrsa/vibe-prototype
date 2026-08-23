@@ -41,4 +41,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./client-app/dist/
-          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
+          server-dir:/vibeprototype/
