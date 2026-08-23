@@ -22,22 +22,23 @@ jobs:
           cache: npm
           cache-dependency-path: client-app/package-lock.json
 
-      # 3. Install dependencies only inside client-app/project
+      # 3. Install dependencies
       - name: Install dependencies
         working-directory: ./client-app
         run: npm ci
 
-      # 4. Build the React project
+      # 4. Build React project
       - name: Build application
         working-directory: ./client-app
         run: npm run build
 
-            # 5. Deploy via SFTP (Port 22)
+      # 5. Deploy via SFTP
       - name: Deploy to Shared Hosting
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          host: ${{ secrets.FTP_SERVER }}
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./client-app/dist/
-          server-dir: /vibeprototype/
+          port: 22
+          local_path: ./client-app/dist/
+          remote_path: /vibeprototype/
