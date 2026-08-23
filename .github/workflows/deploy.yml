@@ -1,82 +1,44 @@
-name: Deploy to FTP
+name: Deploy Client App to Shared Hosting
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - deploy
 
 jobs:
-  build-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./client-app
 
     steps:
-      - name: Checkout Code
+      # 1. Get code from GitHub
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      # 2. Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-          cache-dependency-path: './client-app/package-lock.json'
+          cache: npm
+          cache-dependency-path: client-app/package-lock.json
 
-      - name: Install Dependencies
+      # 3. Install dependencies only inside client-app/project
+      - name: Install dependencies
+        working-directory: ./client-app
         run: npm ci
 
-      - name: Build Project
+      # 4. Build the React project
+      - name: Build application
+        working-directory: ./client-app
         run: npm run build
-        env:
-          VITE_BASE_PATH: /vibe-prototype/
 
-      - name: Verify Build
-        run: ls -la dist
-
-      - name: Diagnose FTP layout
-        env:
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-        run: |
-          command -v lftp >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y lftp; }
-          lftp -c "
-            set ftp:ssl-allow yes;
-            set ssl:verify-certificate no;
-            set ftp:passive-mode on;
-            open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\";
-            echo ===PWD===; pwd;
-            echo ===LANDING_DIR===; ls -la .;
-            echo ===PARENT_DIR===; ls -la ..;
-            echo ===TREE_DEPTH2===; find -d 2 .;
-          "
-
-      - name: Deploy to FTP using LFTP
-        env:
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-        run: |
-          command -v lftp >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y lftp; }
-
-          if lftp -u "$FTP_USERNAME,$FTP_PASSWORD" "$FTP_SERVER" -e "set ftp:ssl-allow yes; set ssl:verify-certificate no; set ftp:passive-mode on; cd /public_html; bye" >/dev/null 2>&1; then
-            RBASE="/public_html"
-          else
-            RBASE=""
-          fi
-          echo "FTP base directory: '${RBASE:-/}' (landing dir + /vibe-prototype)"
-
-          lftp -c "
-            set ftp:ssl-allow yes;
-            set ssl:verify-certificate no;
-            set ftp:passive-mode on;
-            set net:max-retries 2;
-            set cmd:fail-exit yes;
-            open -u \"$FTP_USERNAME\",\"$FTP_PASSWORD\" \"$FTP_SERVER\";
-            mkdir -pf $RBASE/vibe-prototype;
-            cd $RBASE/vibe-prototype;
-            mirror -R --verbose --ignore-time --parallel=10 ./dist/ ./;
-            ls -la
-          "
+      # 5. Deploy only the build folder through FTP
+      - name: Deploy to Shared Hosting
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./client-app/dist/
+          server-dir: ${{ secrets.FTP_REMOTE_DIR }}
