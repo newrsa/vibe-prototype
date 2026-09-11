@@ -56,5 +56,5 @@ test.describe('Vibe Coding Dynamic Tests', () => {
       }
     });
 });
-  }
+
 });
