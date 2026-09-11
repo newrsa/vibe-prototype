@@ -24,8 +24,8 @@ test.describe('Vibe Coding Dynamic Tests', () => {
     return;
   }
 
-  for (const data of testData) {
-    test(data.testName || 'Unnamed Test', async ({ page }) => {
+  testData.forEach((data, idx) => {
+    test(`${data.testName || 'Unnamed Test'}_${idx}`, async ({ page }) => {
       // 1. Navigate to URL
       if (data.Url) {
         await page.goto(data.Url);
@@ -55,5 +55,6 @@ test.describe('Vibe Coding Dynamic Tests', () => {
         await expect(page).toHaveURL(new RegExp(data.ExpectedUrl));
       }
     });
+});
   }
 });
