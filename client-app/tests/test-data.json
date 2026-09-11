@@ -1,0 +1,66 @@
+[
+  {
+    "testName": "Brand Logo Visibility\t",
+    "Url": "http://localhost:5173/",
+    "Action": "verify_element\t",
+    "Selector": "#pw-3\t",
+    "ExpectedUrl": "",
+    "ExpectedValue": ""
+  },
+  {
+    "testName": "User Profile Avatar Visibility",
+    "Url": "http://localhost:5173/",
+    "Action": "verify_element\t",
+    "Selector": "#pw-16",
+    "ExpectedUrl": "",
+    "ExpectedValue": ""
+  },
+  {
+    "testName": "Settings Icon Visibility",
+    "Url": "http://localhost:5173/",
+    "Action": "verify_element\t",
+    "Selector": "#pw-18",
+    "ExpectedUrl": "",
+    "ExpectedValue": ""
+  },
+  {
+    "testName": "Navigate to Pathway\t",
+    "Url": "http://localhost:5173/",
+    "Action": "click",
+    "Selector": "a[title='Pathway']",
+    "ExpectedUrl": "/pathway",
+    "ExpectedValue": " "
+  },
+  {
+    "testName": "Navigate to Bluebook",
+    "Url": "http://localhost:5173/pathway",
+    "Action": "click",
+    "Selector": "a[title='Bluebook']",
+    "ExpectedUrl": "/bluebook",
+    "ExpectedValue": ""
+  },
+  {
+    "testName": "Navigate to Network",
+    "Url": "http://localhost:5173/pathway",
+    "Action": "click",
+    "Selector": "a[title='Network']",
+    "ExpectedUrl": "/network",
+    "ExpectedValue": ""
+  },
+  {
+    "testName": "Navigate to My Profile",
+    "Url": "http://localhost:5173/pathway",
+    "Action": "click",
+    "Selector": "a[title='My Profile']",
+    "ExpectedUrl": "/my_profile",
+    "ExpectedValue": ""
+  },
+  {
+    "testName": "Navigate to Schedule",
+    "Url": "http://localhost:5173/pathway",
+    "Action": "click",
+    "Selector": "a[title='Schedule']",
+    "ExpectedUrl": "/schedule",
+    "ExpectedValue": ""
+  }
+]
