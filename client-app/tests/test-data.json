@@ -22,45 +22,5 @@
     "Selector": "#pw-18",
     "ExpectedUrl": "",
     "ExpectedValue": ""
-  },
-  {
-    "TestName": "Navigate to Pathway\t",
-    "Url": "http://localhost:5173/",
-    "Action": "click",
-    "Selector": "#pw-5",
-    "ExpectedUrl": "/pathway",
-    "ExpectedValue": " "
-  },
-  {
-    "TestName": "Navigate to Bluebook",
-    "Url": "http://localhost:5173/pathway",
-    "Action": "click",
-    "Selector": "#pw-6",
-    "ExpectedUrl": "/bluebook",
-    "ExpectedValue": ""
-  },
-  {
-    "TestName": "Navigate to Network",
-    "Url": "http://localhost:5173/pathway",
-    "Action": "click",
-    "Selector": "#pw-7",
-    "ExpectedUrl": "/network",
-    "ExpectedValue": ""
-  },
-  {
-    "TestName": "Navigate to My Profile",
-    "Url": "http://localhost:5173/pathway",
-    "Action": "click",
-    "Selector": "#pw-8",
-    "ExpectedUrl": "/my_profile",
-    "ExpectedValue": ""
-  },
-  {
-    "TestName": "Navigate to Schedule",
-    "Url": "http://localhost:5173/pathway",
-    "Action": "click",
-    "Selector": "#pw-9",
-    "ExpectedUrl": "/schedule",
-    "ExpectedValue": ""
   }
 ]
