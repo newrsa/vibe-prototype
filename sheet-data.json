@@ -208,5 +208,26 @@
     "public\\assets\\RSA All Designs_icon\\Frame-9.svg\npublic\\assets\\RSA All Designs_icon\\Frame-11.svg\npublic\\assets\\RSA All Designs_icon\\Frame-2.svg",
     "",
     "check file : desgin-json/title-bar.json ,desgin-json/togle.json"
+  ],
+  [
+    "pw:20",
+    "sidebar-toogle",
+    "img",
+    "pw:2",
+    "public\\assets\\RSA All Designs_icon\\Frame 1000004630.svg",
+    "",
+    "",
+    "width: 16px;\r\nheight: 10px;\r\n",
+    "107,80",
+    "set z-index to come this icon on front of sidebar and dashboard"
+  ],
+  [
+    "pw:21",
+    "pathway-home",
+    "",
+    "pw:1",
+    "",
+    "",
+    "check file: desgin-json/pathway-home.json "
   ]
 ]

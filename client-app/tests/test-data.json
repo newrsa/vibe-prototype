@@ -1,0 +1,26 @@
+[
+  {
+    "TestName": "Brand Logo Visibility\t",
+    "Url": "http://localhost:5173/",
+    "Action": "verify_element\t",
+    "Selector": "#pw-3\t",
+    "ExpectedUrl": "",
+    "ExpectedValue": ""
+  },
+  {
+    "TestName": "User Profile Avatar Visibility",
+    "Url": "http://localhost:5173/",
+    "Action": "verify_element\t",
+    "Selector": "#pw-16",
+    "ExpectedUrl": "",
+    "ExpectedValue": ""
+  },
+  {
+    "TestName": "Settings Icon Visibility",
+    "Url": "http://localhost:5173/",
+    "Action": "verify_element\t",
+    "Selector": "#pw-18",
+    "ExpectedUrl": "",
+    "ExpectedValue": ""
+  }
+]
