@@ -1,3 +1,52 @@
+# RSA Interface Constitution (v0.1 — starter)
+
+> Non-negotiable rules every agent and developer follows on every unit of work in this repo.
+> OpenCode reads this file (AGENTS.md) on every run. Starter version for the pilot — it grows
+> from what we learn. Scope: the interface layer. (The Figma auto-scaler rule is preserved below.)
+
+## 1. Stack
+- React 18 + TypeScript (Vite), Tailwind CSS, Radix UI / ShadCN components.
+- Server state: TanStack Query + Axios. Client state: Zustand.
+- Backend (a unit's API half): Python / FastAPI with Pydantic models.
+- Types across the seam: backend Pydantic models generate the TS types the front-end imports —
+  never hand-write a type that duplicates a backend model.
+- Do not add a new library, framework, or state tool without an explicit decision. If a unit
+  seems to need one, stop and ask.
+
+## 2. Structure
+- Features live under `client-app/src/modules/<feature>/` and own their UI, hooks, services,
+  types, and route pages (pathway, bluebook, network, myprofile, schedule, setting).
+- Build a unit inside its feature module. Do not touch the app shell or other modules.
+
+## 3. Design
+- Tokens only. Use the Tailwind theme and ShadCN components for all color, spacing, typography,
+  and radius. No hardcoded hex colors, pixel spacing, or font values.
+- Reuse existing components before creating new ones.
+
+## 4. Code quality
+- TypeScript strict. No `any` unless justified in a comment. No unused code.
+- Every exported function/component has a short doc comment. Keep functions small and single-purpose.
+- No secrets in code — ever.
+
+## 5. Testing
+- Acceptance tests come from the spec, before code — they define "done," written independently
+  of the implementation.
+- Unit tests are written with the code.
+- A unit is not done until its tests pass.
+
+## 6. Process
+- Spec before code. No implementation starts until a spec with acceptance criteria is approved
+  and the unit is "Ready for Development."
+- Small units — one vertical slice (a screen's behavior + its API) per unit.
+- Review before merge. Every change goes through a PR. No auto-merge — a human gives final
+  approval. Tests and security issues block the merge.
+
+## 7. The golden rule
+If the spec and the code disagree, the spec is right — fix the code, or change the spec
+deliberately. Code never silently decides what the feature does.
+
+---
+
 # Responsive Design Rule for Figma Conversions
 
 When converting fixed-size Figma designs (typically 1440x900) to HTML/CSS, you must ensure that the output is responsive, maintains its original 1:1 aspect ratio scaling, BUT expands to fill 100vw and 100vh without leaving any letterbox margins (black space) on the sides or top/bottom.
