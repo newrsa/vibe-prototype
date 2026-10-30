@@ -2,6 +2,7 @@
 export function PathwayPage() {
   return (
     <div className="w-full h-full relative overflow-hidden bg-[#0E0F13] flex flex-col">
+      <div className="absolute top-4 right-6 z-50 rounded-md bg-black/50 px-3 py-1 text-white text-sm font-semibold">This is pathway screen</div>
       {/* Background Decorative Blur Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-[10%] left-[20%] w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen"></div>
