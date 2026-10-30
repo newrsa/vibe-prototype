@@ -1,4 +1,4 @@
 // TODO: Implement NetworkPage UI
 export function NetworkPage() {
-  return <div className="p-6">Network Page</div>
+  return <div className="p-6">This is networking screen</div>
 }
